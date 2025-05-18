@@ -1,0 +1,40 @@
+# ========== NODE MODULES (backend aj frontend) ==========
+client/node_modules/
+server/node_modules/
+
+# ========== BUILD SÚBORY ==========
+client/build/
+server/build/
+
+# ========== VS CODE ==========
+.vscode/
+client/.vscode/
+server/.vscode/
+
+# ========== TEST COVERAGE ==========
+client/coverage/
+server/coverage/
+
+# ========== LOG FILES ==========
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# ========== OS ŠPECIFICKÉ ==========
+.DS_Store
+Thumbs.db
+
+# ========== ENVIRONMENTS ==========
+.env
+.env.*
+client/.env*
+server/.env*
+
+# ========== PNP (yarn 2+) ==========
+.pnp/
+.pnp.js
+
+# ========== SQLITE DB (ak používaš) ==========
+server/*.db
+server/*.sqlite
