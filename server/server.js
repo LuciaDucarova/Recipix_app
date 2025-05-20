@@ -39,7 +39,7 @@ const upload = multer({
 // Sprístupni obrázky cez server
 app.use('/uploads', express.static('uploads'));
 
-const db = new sqlite3.Database('./recipix.db', (err) => {
+const db = new sqlite3.Database(path.join(__dirname, 'recipix.db'), (err) => {
   if (err) {
     console.error(' Error connecting to SQLite:', err.message);
   } else {
