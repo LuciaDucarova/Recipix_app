@@ -36,5 +36,5 @@ server/.env*
 .pnp.js
 
 # ========== SQLITE DB (ak používaš) ==========
-server/*.db
-server/*.sqlite
+# server/*.db
+# server/*.sqlite
