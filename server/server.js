@@ -14,21 +14,11 @@ if (!fs.existsSync(uploadsDir)) {
     fs.mkdirSync(uploadsDir);
 }
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, uploadsDir);
-    },
-    filename: function (req, file, cb) {
-        // Create a unique filename with original extension
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-        cb(null, uniqueSuffix + path.extname(file.originalname));
-    }
-});
 
+const storage = multer.memoryStorage();
 const upload = multer({ 
     storage: storage,
     fileFilter: function (req, file, cb) {
-        // Accept images only
         if (!file.originalname.match(/\.(jpg|jpeg|png|gif|webp)$/)) {
             return cb(new Error('Only image files are allowed!'), false);
         }
@@ -36,8 +26,7 @@ const upload = multer({
     }
 });
 
-// Sprístupni obrázky cez server
-app.use('/uploads', express.static('uploads'));
+
 
 const db = new sqlite3.Database(path.join(__dirname, 'recipix.db'), (err) => {
   if (err) {
@@ -102,11 +91,13 @@ app.post('/recipes', upload.single('image'), (req, res) => {
     return res.status(400).json({ error: "Steps must be a non-empty string (max 1000 znakov)." });
   }
 
-  // Validácia obrázka
-  const imagePath = req.file ? req.file.path : null;
-  if (!imagePath) {
+  if (!req.file) {
     return res.status(400).json({ error: "Recipe image is required." });
   }
+  // Konvertujeme obrázok na base64
+  const imageBase64 = req.file.buffer.toString('base64');
+  const imageType = req.file.mimetype;
+  const imagePath = `data:${imageType};base64,${imageBase64}`;
 
   // Validácia preparationTime a servings
   const prepTime = Number(req.body.preparationTime);
