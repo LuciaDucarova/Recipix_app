@@ -319,3 +319,9 @@ select {
     width: 100%;
   }
 }
+
+.recipe-detail-text {
+  font-size: 1.1rem;
+  color: #222;
+  margin-bottom: 0.5em;
+}

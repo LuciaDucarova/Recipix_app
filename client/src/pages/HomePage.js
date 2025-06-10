@@ -166,7 +166,11 @@ const filteredRecipes = recipes.filter(recipe => {
                 key={recipe.id}
                 id={recipe.id}
                 title={recipe.title}
-                image={`http://localhost:3000/${(recipe.imagePath || '').replace(/\\/g, '/')}`}
+                
+                
+                ////noveeeeeeeeeeeeeeeeeee bacha jeden riadok kodu prec
+                
+                image={recipe.imagePath}
                 rating={recipe.rating || 0}
                 isFavorite={recipe.favorite || false}
                 onToggleFavorite={() => handleToggleFavorite(recipe.id, recipe.favorite)}
@@ -180,3 +184,5 @@ const filteredRecipes = recipes.filter(recipe => {
 }
 
 export default HomePage;
+
+

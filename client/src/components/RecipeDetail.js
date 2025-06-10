@@ -76,8 +76,13 @@ function RecipeDetail() {
       >
         ←
       </span>
-      <h1>{recipe.title}</h1>
-      <img src={`http://localhost:3000/${(recipe.imagePath || '').replace(/\\/g, '/')}`} alt={recipe.title} style={{ width: '100%', borderRadius: 8, marginBottom: 16 }} />
+      <h1>{recipe.title}</h1>      
+    
+      <img src={recipe.imagePath} alt={recipe.title} style={{ width: '100%', maxWidth: '600px', height: 'auto',display: 'block', borderRadius: 8, margin:'0 auto 16px auto',objectFit: 'cover'  }} />
+      
+      <p className="recipe-detail-text"><strong>Počet porcií:</strong> {recipe.servings}</p>
+      <p className="recipe-detail-text"><strong>Čas prípravy:</strong> {recipe.preparationTime} min</p>
+      
       <h3>Ingrediencie:</h3>
       <ul>
         {recipe.ingredients && recipe.ingredients.map((ing, idx) => (
